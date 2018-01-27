@@ -15,8 +15,29 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import VueRouter from 'vue-router';
+
+window.Vue.use(VueRouter);
+
+import UsersIndex from './components/users/UsersIndex.vue';
+import UsersCreate from './components/users/UsersCreate.vue';
+import UsersEdit from './components/users/UsersEdit.vue';
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
-const app = new Vue({
-    el: '#app'
-});
+const routes = [
+    {
+        path: '/home',
+        components: {
+            usersIndex: UsersIndex
+        }
+    },
+    {path: '/admin/users/create', component: UsersCreate, name: 'createUsers'},
+    {path: '/admin/users/edit/:id', component: UsersEdit, name: 'editUsers'},
+]
+
+const router = new VueRouter({ routes })
+
+const app = new Vue({ router }).$mount('#app')
+// const app = new Vue({
+//     el: '#app'
+// });
