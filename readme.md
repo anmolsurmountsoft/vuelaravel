@@ -23,3 +23,9 @@
 5. run php artisan serve.<br>
 4. run npm run watch.<br>
 </p>
+
+<h1>TODO's</h1>
+<p>
+1. while creating api's user larvel passport for authentication,remove baisc auth.<br>
+2. Make clear seprations of concerns of business logic,Instead of Laravel eloquent use Data Mappers for long run project and maintaintablity.<br>
+ </p>
