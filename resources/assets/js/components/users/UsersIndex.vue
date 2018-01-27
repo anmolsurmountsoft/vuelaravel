@@ -62,12 +62,12 @@
             deleteEntry(id, index) {
                 if (confirm("Do you really want to delete it?")) {
                     var app = this;
-                    axios.delete('/api/v1/companies/' + id)
+                    axios.delete('/user/destroy/' + id)
                         .then(function (resp) {
                             app.users.splice(index, 1);
                         })
                         .catch(function (resp) {
-                            alert("Could not delete company");
+                            alert("Could not delete user");
                         });
                 }
             }

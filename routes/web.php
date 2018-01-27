@@ -22,3 +22,4 @@ Route::get('/user', 'HomeController@showall');
 Route::get('/user/edit/{user_id}', 'HomeController@show');
 Route::post('/user/update/{user_id}', 'HomeController@update');
 Route::post('/user/create/', 'HomeController@store');
+Route::post('/user/delete/{user_id}', 'HomeController@destroy');
