@@ -26,7 +26,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 
 const routes = [
     {
-        path: '/home',
+        path: '/',
         components: {
             usersIndex: UsersIndex
         }

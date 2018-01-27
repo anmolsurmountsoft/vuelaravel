@@ -5,31 +5,25 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">Create new company</div>
+            <div class="panel-heading">Create new user</div>
             <div class="panel-body">
-                <form v-on:submit="saveForm()">
+                <form v-on:submit.prevent="saveForm()">
                     <div class="row">
                         <div class="col-xs-12 form-group">
-                            <label class="control-label">Company name</label>
-                            <input type="text" v-model="company.name" class="form-control">
+                            <label class="control-label">User name</label>
+                            <input type="text" v-model="user.name" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 form-group">
-                            <label class="control-label">Company address</label>
-                            <input type="text" v-model="company.address" class="form-control">
+                            <label class="control-label">User email</label>
+                            <input type="text" v-model="user.email" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 form-group">
-                            <label class="control-label">Company website</label>
-                            <input type="text" v-model="company.website" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 form-group">
-                            <label class="control-label">Company email</label>
-                            <input type="text" v-model="company.email" class="form-control">
+                            <label class="control-label">User password</label>
+                            <input type="text" v-model="user.password" class="form-control">
                         </div>
                     </div>
                     <div class="row">
@@ -42,3 +36,35 @@
         </div>
     </div>
 </template>
+
+
+
+
+<script>
+    export default {
+        data: function () {
+            return {
+                user: {
+                    name: '',
+                    email: '',
+                    password : ''
+                }
+            }
+        },
+        methods: {
+            saveForm() {
+                //event.preventDefault();
+                var app = this;
+                var newUser = app.user;
+                axios.post('/user/create', newUser)
+                    .then(function (resp) {
+                        app.$router.push({path: '/'});
+                    })
+                    .catch(function (resp) {
+                        console.log(resp);
+                        alert("Could not create your user");
+                    });
+            }
+        }
+    }
+</script>

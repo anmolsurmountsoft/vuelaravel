@@ -5,36 +5,24 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">Create new company</div>
+            <div class="panel-heading">Create new user</div>
             <div class="panel-body">
                 <form v-on:submit="saveForm()">
                     <div class="row">
                         <div class="col-xs-12 form-group">
-                            <label class="control-label">Company name</label>
-                            <input type="text" v-model="company.name" class="form-control">
+                            <label class="control-label">User name</label>
+                            <input type="text" v-model="user.name" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 form-group">
-                            <label class="control-label">Company address</label>
-                            <input type="text" v-model="company.address" class="form-control">
+                            <label class="control-label">User email</label>
+                            <input type="text" v-model="user.email" class="form-control">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 form-group">
-                            <label class="control-label">Company website</label>
-                            <input type="text" v-model="company.website" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 form-group">
-                            <label class="control-label">Company email</label>
-                            <input type="text" v-model="company.email" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 form-group">
-                            <button class="btn btn-success">Create</button>
+                            <button class="btn btn-success">Update</button>
                         </div>
                     </div>
                 </form>
@@ -42,3 +30,44 @@
         </div>
     </div>
 </template>
+
+
+<script>
+    export default {
+        mounted() {
+            let app = this;
+            let id = app.$route.params.id;
+            app.userId = id;
+            axios.get('/user/edit/' + id)
+                .then(function (resp) {
+                    app.user = resp.data;
+                })
+                .catch(function () {
+                    alert("Could not load your user")
+                });
+        },
+        data: function () {
+            return {
+                userId: null,
+                user: {
+                    name: '',
+                    email: '',
+                }
+            }
+        },
+        methods: {
+            saveForm() {
+                var app = this;
+                var newUser = app.user;
+                axios.post('/user/update/' + app.userId, newUser)
+                    .then(function (resp) {
+                        app.$router.replace('/');
+                    })
+                    .catch(function (resp) {
+                        console.log(resp);
+                        alert("Could not create your User");
+                    });
+            }
+        }
+    }
+</script>
