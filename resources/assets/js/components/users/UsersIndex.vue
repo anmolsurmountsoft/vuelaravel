@@ -62,7 +62,7 @@
             deleteEntry(id, index) {
                 if (confirm("Do you really want to delete it?")) {
                     var app = this;
-                    axios.delete('/user/destroy/' + id)
+                    axios.delete('/user/delete/' + id)
                         .then(function (resp) {
                             app.users.splice(index, 1);
                         })
