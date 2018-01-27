@@ -17,9 +17,9 @@
 <h1>Installation</h1>
 <p>
 1. install laravel 5.5 or greater from composer.
-2. run npm install.
-3. run php migrate.
-4. run php db:seed.
-5. run php artisan serve.
-
+2. run npm install.<br>
+3. run php migrate.<br>
+4. run php db:seed.<br>
+5. run php artisan serve.<br>
+4. run npm run watch.<br>
 </p>
