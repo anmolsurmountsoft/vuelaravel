@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+Route::group(['middleware' => ['BasicAuth']], function () {
+  Route::get('students/all', 'StudentController@showAll');
+  Route::get('/students/edit/{students_id}', 'StudentController@showById');
+  Route::post('/students/update/{students_id}', 'StudentController@update');
+  Route::post('/students/create/', 'StudentController@store');
+  Route::delete('/students/delete/{students_id}', 'StudentController@delete');
+
+  });

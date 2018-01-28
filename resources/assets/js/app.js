@@ -16,28 +16,31 @@ window.Vue = require('vue');
  */
 
 import VueRouter from 'vue-router';
-
+import VueResource from 'vue-resource';
 window.Vue.use(VueRouter);
 
-import UsersIndex from './components/users/UsersIndex.vue';
-import UsersCreate from './components/users/UsersCreate.vue';
-import UsersEdit from './components/users/UsersEdit.vue';
+// import UsersIndex from './components/users/UsersIndex.vue';
+// import UsersCreate from './components/users/UsersCreate.vue';
+// import UsersEdit from './components/users/UsersEdit.vue';
+
+import StudentsIndex from './components/students/StudentsIndex.vue';
+import StudentsCreate from './components/students/StudentsCreate.vue';
+import StudentsEdit from './components/students/StudentsEdit.vue';
+//Vue.http.headers.common['Authorization'] = 'Basic YWRtaW5AZXhhbXBsZS5vcmc6QWRtaW5AMTIzNA==';
+
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 const routes = [
     {
         path: '/',
         components: {
-            usersIndex: UsersIndex
+            studentsIndex: StudentsIndex
         }
     },
-    {path: '/admin/users/create', component: UsersCreate, name: 'createUsers'},
-    {path: '/admin/users/edit/:id', component: UsersEdit, name: 'editUsers'},
+    {path: '/students/create', component: StudentsCreate, name: 'createStudents'},
+    {path: '/students/edit/:id', component: StudentsEdit, name: 'editStudents'},
 ]
 
 const router = new VueRouter({ routes })
 
 const app = new Vue({ router }).$mount('#app')
-// const app = new Vue({
-//     el: '#app'
-// });

@@ -23,3 +23,8 @@ Route::get('/user/edit/{user_id}', 'HomeController@show');
 Route::post('/user/update/{user_id}', 'HomeController@update');
 Route::post('/user/create/', 'HomeController@store');
 Route::delete('/user/delete/{user_id}', 'HomeController@destroy');
+
+
+
+#########Student Routes##############
+Route::get('/students', 'StudentController@index')->name('student');
